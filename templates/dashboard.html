@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Welcome {{ current_user.name }}</h2>
+<p class="match-count">Matches Found: {{ match_count }}</p>
+
+<div class="card">
+    <h3>Your Profile</h3>
+    {% if current_user.profile_pic %}
+        <img src="{{ url_for('static', filename='uploads/' + current_user.profile_pic) }}" width="100">
+    {% endif %}
+    <p><strong>College:</strong> {{ current_user.college }}</p>
+    <p><strong>Bio:</strong> {{ current_user.bio }}</p>
+</div>
+
+{% for match in matches %}
+<div class="card">
+    {% if match.user.profile_pic %}
+        <img src="{{ url_for('static', filename='uploads/' + match.user.profile_pic) }}" width="80">
+    {% endif %}
+
+    <h3>{{ match.user.name }}</h3>
+    <p>{{ match.user.bio }}</p>
+    <p><strong>Compatibility:</strong> {{ match.percentage }}%</p>
+
+    <p><strong>Shared Interests:</strong>
+        {% for i in match.shared_interests %}
+            {{ i.name }}
+        {% endfor %}
+    </p>
+
+    <p><strong>Contact:</strong> {{ match.user.contact_info }}</p>
+</div>
+{% endfor %}
+
+<a href="{{ url_for('logout') }}">
+    <button style="background:#ef4444;">Logout</button>
+</a>
+
+{% endblock %}

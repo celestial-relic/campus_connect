@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+<h2>Register</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <input type="text" name="college" placeholder="College Name" required>
+    <textarea name="bio" placeholder="Short Bio"></textarea>
+    <input type="text" name="contact" placeholder="Contact Info (Instagram/Phone)">
+    <input type="file" name="profile_pic">
+
+    <h4>Select Interests</h4>
+    {% for interest in interests %}
+        <input type="checkbox" name="interests" value="{{ interest.id }}"> {{ interest.name }}<br>
+    {% endfor %}
+
+    <br>
+    <button type="submit">Register</button>
+</form>
+</div>
+
+{% endblock %}

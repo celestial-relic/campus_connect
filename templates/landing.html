@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+    <h1>CampusConnect</h1>
+    <p>Find the right teammates inside your college using smart interest matching.</p>
+
+    <a href="{{ url_for('register') }}">
+        <button>Get Started</button>
+    </a>
+
+    <a href="{{ url_for('login') }}">
+        <button style="background:#64748b;">Login</button>
+    </a>
+</div>
+
+{% endblock %}
